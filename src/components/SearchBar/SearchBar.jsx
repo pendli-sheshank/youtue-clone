@@ -5,29 +5,30 @@ export default class SearchBar extends Component {
     input: "",
   };
 
-  onFormSubmit = (e) => {
-    e.preventDefault();
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    this.props.onFormSubmit(this.state.input);
+    console.log("clicked");
   };
 
-  searchInput = (e) => {
-    this.setState({ input: e.target.value });
+  searchInput = (event) => {
+    this.setState({ input: event.target.value });
   };
 
   render() {
-    const { input } = this.state;
     return (
       <>
-        <from onSubmit={this.onFormSubmit}>
+        <form onSubmit={this.onFormSubmit}>
           <div className="form-group">
             <input
               className="form-control"
               placeholder="Search here.."
-              type="text"
-              value={input}
+              value={this.state.input}
               onChange={this.searchInput}
+              type="text"
             />
           </div>
-        </from>
+        </form>
       </>
     );
   }
